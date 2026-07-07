@@ -35,7 +35,7 @@ The application accepts a long URL, generates a unique short code, stores the ma
 
 - `python manage.py migrate`
 
-6. Start the development server:
+5. Start the development server:
 
 - `python manage.py runserver`
 
