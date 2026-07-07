@@ -26,9 +26,7 @@ class CreateShortURLServiceTests(TestCase):
         Create a ShortURL object for a valid URL.
         """
         # Act
-        result = create_short_url(
-            self.valid_https_url
-        )
+        result = create_short_url(self.valid_https_url)
 
         # Assert
         self.assertEqual(
@@ -37,17 +35,15 @@ class CreateShortURLServiceTests(TestCase):
         )
         self.assertIsNotNone(result.code)
         self.assertTrue(
-            ShortURL.objects.filter(
-                original_url=self.valid_https_url
-            ).exists()
+            ShortURL.objects.filter(original_url=self.valid_https_url).exists()
         )
-    
+
     @patch(
-            "shortener.services.generate_code",
-            side_effect=[
-                EXAMPLE_CODE_1,
-                EXAMPLE_CODE_2,
-            ]        
+        "shortener.services.generate_code",
+        side_effect=[
+            EXAMPLE_CODE_1,
+            EXAMPLE_CODE_2,
+        ],
     )
     def test_generates_unique_code(self, mock_generate_code):
         """
@@ -60,16 +56,14 @@ class CreateShortURLServiceTests(TestCase):
         )
 
         # Act
-        result = create_short_url(
-            self.valid_https_url
-        )
+        result = create_short_url(self.valid_https_url)
 
         # Assert
         self.assertEqual(
             result.code,
             EXAMPLE_CODE_2,
         )
-    
+
     @patch("shortener.services.generate_code", return_value=EXAMPLE_CODE_1)
     def test_raises_when_code_generation_fails(self, mock_generate_code):
         """

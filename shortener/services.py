@@ -13,7 +13,7 @@ def create_short_url(original_url: str) -> ShortURL:
 
     Args:
         original_url: URL to be shortened.
-    
+
     Returns:
         Created ShortURL instance.
     """
@@ -28,7 +28,5 @@ def create_short_url(original_url: str) -> ShortURL:
                 )
             except IntegrityError:
                 continue
-    
-    raise ShortCodeGenerationError(
-        "Unable to generate unique short code."
-    )
+
+    raise ShortCodeGenerationError("Unable to generate unique short code.")

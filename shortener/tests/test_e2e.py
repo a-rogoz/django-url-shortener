@@ -19,9 +19,7 @@ class URLShortenerE2ETests(TestCase):
         # Arrange & Act
         create_response = self.client.post(
             reverse("shortener:shorten-url"),
-            {
-                "original_url": self.valid_https_url
-            },
+            {"original_url": self.valid_https_url},
             content_type="application/json",
         )
 

@@ -3,12 +3,8 @@ import time
 CODE_LENGTH = 6
 HASH_MULTIPLIER = 31
 BASE = 62
-MAX_CODE_VALUE = BASE ** CODE_LENGTH
-BASE62_ALPHABET = (
-    "0123456789"
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    "abcdefghijklmnopqrstuvwxyz"
-)
+MAX_CODE_VALUE = BASE**CODE_LENGTH
+BASE62_ALPHABET = "0123456789" "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz"
 
 
 def generate_code(original_url: str) -> str:
@@ -33,7 +29,7 @@ def calculate_numeric_hash(value: str) -> int:
 
     Args:
         value: Input string to hash.
-    
+
     Returns:
         Integer hash value.
     """
@@ -41,7 +37,7 @@ def calculate_numeric_hash(value: str) -> int:
 
     for char in value:
         hash_value = (hash_value * HASH_MULTIPLIER + ord(char)) % MAX_CODE_VALUE
-    
+
     return hash_value
 
 
@@ -52,18 +48,18 @@ def encode_base62(number: int, length: int = CODE_LENGTH) -> str:
     Args:
         number: Integer value to encode.
         length: Desired length of the resulting code.
-    
+
     Returns:
         Base62 encoded string padded to the requested length.
     """
     if number == 0:
         return BASE62_ALPHABET[0].rjust(length, "0")
-    
+
     result = []
 
     while number:
         number, remainder = divmod(number, BASE)
         result.append(BASE62_ALPHABET[remainder])
-    
+
     encoded = "".join(reversed(result))
     return encoded.rjust(length, "0")

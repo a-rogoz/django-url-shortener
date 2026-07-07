@@ -18,7 +18,7 @@ class CreateShortURLViewTests(APITestCase):
 
     def setUp(self):
         self.url = reverse("shortener:shorten-url")
-    
+
     def test_create_short_url(self):
         """
         Create a short URL from a valid HTTPS URL.
@@ -26,9 +26,7 @@ class CreateShortURLViewTests(APITestCase):
         # Arrange & Act
         response = self.client.post(
             self.url,
-            {
-                "original_url": self.valid_https_url
-            },
+            {"original_url": self.valid_https_url},
             format="json",
         )
 
@@ -46,11 +44,9 @@ class CreateShortURLViewTests(APITestCase):
             response.data["short_url"],
         )
         self.assertTrue(
-            ShortURL.objects.filter(
-                original_url=self.valid_https_url
-            ).exists()
+            ShortURL.objects.filter(original_url=self.valid_https_url).exists()
         )
-    
+
     def test_rejects_invalid_url(self):
         """
         Reject requests containing invalid URL values.
@@ -58,9 +54,7 @@ class CreateShortURLViewTests(APITestCase):
         # Arrange & Act
         response = self.client.post(
             self.url,
-            {
-                "original_url": self.invalid_url
-            },
+            {"original_url": self.invalid_url},
             format="json",
         )
 

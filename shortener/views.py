@@ -21,7 +21,7 @@ class ShortURLCreateView(CreateAPIView):
     """
     API end-point for creating shortened URLs.
     """
-    
+
     serializer_class = CreateShortURLSerializer
 
     def create(self, request: Request, *args, **kwargs) -> Response:
@@ -33,7 +33,7 @@ class ShortURLCreateView(CreateAPIView):
             request: HTTP request containing the original URL.
             *args: Additional positional arguments.
             **kwargs: Additional keyword arguments.
-        
+
         Returns:
             Response containing the generated short URL.
         """
@@ -45,16 +45,12 @@ class ShortURLCreateView(CreateAPIView):
         try:
             short_url_obj = create_short_url(original_url)
         except ShortCodeGenerationError:
-            logger.exception(
-                f"Failed to generate short code for URL: {original_url}"
-            )
+            logger.exception(f"Failed to generate short code for URL: {original_url}")
             return Response(
-                {
-                    "message": "Unable to generate short URL."
-                },
+                {"message": "Unable to generate short URL."},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
-        
+
         short_url = request.build_absolute_uri(
             reverse(
                 "shortener:redirect-short-url",
@@ -71,7 +67,7 @@ class ShortURLCreateView(CreateAPIView):
                 "message": "success",
                 "short_url": short_url,
             },
-            status=status.HTTP_201_CREATED
+            status=status.HTTP_201_CREATED,
         )
 
 
@@ -87,7 +83,7 @@ class RedirectShortURLView(View):
         Args:
             request: HTTP request.
             code: Generated short URL identifier.
-        
+
         Returns:
             HTTP redirect response to the original URL.
         """

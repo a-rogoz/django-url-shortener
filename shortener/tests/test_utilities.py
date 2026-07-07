@@ -24,7 +24,7 @@ class CalculateNumericHashTests(SimpleTestCase):
             calculate_numeric_hash(value),
             calculate_numeric_hash(value),
         )
-    
+
     def test_hash_differs_for_different_inputs(self):
         """
         Produce different hashes for different inputs.
@@ -50,7 +50,7 @@ class EncodeBase62Tests(SimpleTestCase):
             encode_base62(0),
             "000000",
         )
-    
+
     def test_encode_single_digit(self):
         """
         Encode a single-digit value correctly.
@@ -60,7 +60,7 @@ class EncodeBase62Tests(SimpleTestCase):
             encode_base62(1),
             "000001",
         )
-    
+
     def test_returns_fixed_length_string(self):
         """
         Return a code of the configured length.
@@ -70,7 +70,7 @@ class EncodeBase62Tests(SimpleTestCase):
 
         # Assert
         self.assertEqual(len(code), CODE_LENGTH)
-    
+
     def test_contains_only_base62_characters(self):
         """
         Use only Base62 alphabet characters.
@@ -79,9 +79,7 @@ class EncodeBase62Tests(SimpleTestCase):
         code = encode_base62(987654)
 
         # Arrange
-        self.assertTrue(
-            all(char in BASE62_ALPHABET for char in code)
-        )
+        self.assertTrue(all(char in BASE62_ALPHABET for char in code))
 
 
 class GenerateCodeTests(SimpleTestCase):
@@ -101,7 +99,7 @@ class GenerateCodeTests(SimpleTestCase):
             len(code),
             CODE_LENGTH,
         )
-    
+
     def test_generate_code_uses_base62_characters(self):
         """
         Generate a code using only Base62 characters.
@@ -110,10 +108,8 @@ class GenerateCodeTests(SimpleTestCase):
         code = generate_code("https://example.com")
 
         # Assert
-        self.assertTrue(
-            all(char in BASE62_ALPHABET for char in code)
-        )
-    
+        self.assertTrue(all(char in BASE62_ALPHABET for char in code))
+
     @patch("shortener.utilities.time.time_ns", return_value=12345)
     def test_generate_code_is_deterministic_for_fixed_timestamp(self, mock_time_ns):
         """

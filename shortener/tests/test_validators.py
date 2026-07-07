@@ -8,7 +8,7 @@ class TestHttpsUrlValidator(SimpleTestCase):
     """
     Test HTTPS URL validation behaviour.
     """
-    
+
     def test_https_validator_passes_for_https_url(self):
         """
         Allow URLs using the HTTPS scheme.
@@ -29,7 +29,7 @@ class TestHttpsUrlValidator(SimpleTestCase):
         # Act & Assert
         with self.assertRaises(ValidationError):
             validator("http://example.com")
-    
+
     def test_https_validator_passes_for_none(self):
         """
         Allow None values to be handled by field-level validation.

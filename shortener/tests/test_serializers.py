@@ -21,9 +21,7 @@ class CreateShortURLSerializerTests(TestCase):
         """
         # Arrange & Act
         serializer = CreateShortURLSerializer(
-            data={
-                "original_url": self.valid_https_url
-            }
+            data={"original_url": self.valid_https_url}
         )
 
         # Assert
@@ -35,24 +33,18 @@ class CreateShortURLSerializerTests(TestCase):
         """
         # Arrange & Act
         serializer = CreateShortURLSerializer(
-            data={
-                "original_url": self.invalid_http_url
-            }
+            data={"original_url": self.invalid_http_url}
         )
 
         # Assert
         self.assertFalse(serializer.is_valid())
-    
+
     def test_invalid_url_is_rejected(self):
         """
         Reject values that are not valid URLs.
         """
         # Arrange & Act
-        serializer = CreateShortURLSerializer(
-            data={
-                "original_url": self.invalid_url
-            }
-        )
+        serializer = CreateShortURLSerializer(data={"original_url": self.invalid_url})
 
         # Assert
         self.assertFalse(serializer.is_valid())

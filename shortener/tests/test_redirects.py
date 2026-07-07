@@ -43,7 +43,7 @@ class RedirectShortURLViewTests(TestCase):
             response.url,
             self.valid_https_url,
         )
-    
+
     def test_unknown_code_returns_404(self):
         """
         Return 404 when the requested short code does not exist.
