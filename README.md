@@ -35,13 +35,9 @@ The application accepts a long URL, generates a unique short code, stores the ma
 
 - `python manage.py migrate`
 
-5. Collect static files:
-
-- `python manage.py collectstatic`
-
 6. Start the development server:
 
-- `python manage.py runerver`
+- `python manage.py runserver`
 
 ## API end-points:
 
@@ -64,7 +60,7 @@ The application accepts a long URL, generates a unique short code, stores the ma
 
 ### Redirect to original URL
 
-- GET: `http://127.0.0.1:8000/shrt/<code>`
+- GET: `http://127.0.0.1:8000/shrt/<code>/`
 
 #### Example:
 
