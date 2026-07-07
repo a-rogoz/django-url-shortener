@@ -36,7 +36,9 @@ def calculate_numeric_hash(value: str) -> int:
     hash_value = 0
 
     for char in value:
-        hash_value = (hash_value * HASH_MULTIPLIER + ord(char)) % MAX_CODE_VALUE
+        hash_value = (
+            hash_value * HASH_MULTIPLIER + ord(char)
+        ) % MAX_CODE_VALUE
 
     return hash_value
 

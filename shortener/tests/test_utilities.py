@@ -2,9 +2,13 @@ from unittest.mock import patch
 
 from django.test import SimpleTestCase
 
-from shortener.utilities import (BASE62_ALPHABET, CODE_LENGTH,
-                                 calculate_numeric_hash, encode_base62,
-                                 generate_code)
+from shortener.utilities import (
+    BASE62_ALPHABET,
+    CODE_LENGTH,
+    calculate_numeric_hash,
+    encode_base62,
+    generate_code
+)
 
 
 class CalculateNumericHashTests(SimpleTestCase):
@@ -111,7 +115,10 @@ class GenerateCodeTests(SimpleTestCase):
         self.assertTrue(all(char in BASE62_ALPHABET for char in code))
 
     @patch("shortener.utilities.time.time_ns", return_value=12345)
-    def test_generate_code_is_deterministic_for_fixed_timestamp(self, mock_time_ns):
+    def test_generate_code_is_deterministic_for_fixed_timestamp(
+        self,
+        mock_time_ns
+    ):
         """
         Generate the same code when given the same input and timestamp.
         """

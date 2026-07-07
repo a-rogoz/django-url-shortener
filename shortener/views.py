@@ -45,7 +45,9 @@ class ShortURLCreateView(CreateAPIView):
         try:
             short_url_obj = create_short_url(original_url)
         except ShortCodeGenerationError:
-            logger.exception(f"Failed to generate short code for URL: {original_url}")
+            logger.exception(
+                f"Failed to generate short code for URL: {original_url}"
+            )
             return Response(
                 {"message": "Unable to generate short URL."},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,

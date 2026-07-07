@@ -44,7 +44,9 @@ class CreateShortURLSerializerTests(TestCase):
         Reject values that are not valid URLs.
         """
         # Arrange & Act
-        serializer = CreateShortURLSerializer(data={"original_url": self.invalid_url})
+        serializer = CreateShortURLSerializer(
+            data={"original_url": self.invalid_url}
+        )
 
         # Assert
         self.assertFalse(serializer.is_valid())
