@@ -15,32 +15,33 @@ The application accepts a long URL, generates a unique short code, stores the ma
 
 1. Clone the repository:
 
-`git clone <repository-url>`
-`cd <project-directory>`
+- `git clone <repository-url>`
+- `cd <project-directory>`
 
-2. Create and activate a virtual environment:
+2. Create a virtual environment:
 
-`python -m venv .venv`
+- `python -m venv .venv`
 
-Activate it
+3. Activate it:
+
 - Windows: `.venv\Scripts\activate`
 - Linux/macOS: `source .venv/bin/activate`
 
 3. Install dependencies:
 
-`pip install -r requirements.txt`
+- `pip install -r requirements.txt`
 
 4. Apply database migrations:
 
-`python manage.py migrate`
+- `python manage.py migrate`
 
 5. Collect static files:
 
-`python manage.py collectstatic`
+- `python manage.py collectstatic`
 
 6. Start the development server:
 
-`python manage.py runerver`
+- `python manage.py runerver`
 
 ## API end-points:
 
@@ -88,7 +89,7 @@ The test suite covers:
 
 ### Run tests:
 
-`python manage.py test`
+- `python manage.py test`
 
 ## Code Quality
 
@@ -100,9 +101,9 @@ The project uses:
 
 ### Run formatting:
 
-`black .`
-`isort .`
+- `black .`
+- `isort .`
 
 ### Run linting:
 
-`flake8 .`
+- `flake8 .`
